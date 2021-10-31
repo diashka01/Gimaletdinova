@@ -6,7 +6,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	int i, b;
 	double chislo;
-	cout << "Ââåäèòå íàòóðàëüíîå ÷èñëî ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ñ‚ÑƒÑ€Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ ";
 	cin >> chislo;
 	b = 0;
 	if ((chislo - int(chislo) == 0) && (chislo > 0))
@@ -20,11 +20,11 @@ int main()
 			}
 		}
 		if (b == 0)
-			cout << "Ýòî ïðîñòîå ÷èñëî!\n";
+			cout << "Ð­Ñ‚Ð¾ Ð¿Ñ€Ð¾ÑÑ‚Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾!\n";
 		else
-			cout << "Ýòî ñîñòàâíîå ÷èñëî!\n";
+			cout << "Ð­Ñ‚Ð¾ ÑÐ¾ÑÑ‚Ð°Ð²Ð½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾!\n";
 	}
 	else
-		cout << "Îøèáêà ââîäà\n";
+		cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°\n";
 	return 0;
 }
