@@ -6,12 +6,11 @@ int vvod()
 	cin >> chislo;
 	if (chislo < 0 || chislo > 100000 || (chislo - int(chislo) != 0) || cin.fail())
 	{
-		cout << "Îøèáêà" << endl;
+		cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ " << endl;
 		cin.clear();
 	}
 	else
 		return chislo;
-
 }
 int factorial(int vvod)
 {
@@ -22,16 +21,13 @@ int factorial(int vvod)
 		fact = fact * i;
 	return fact;
 }
-
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int vvodim;
 	long long int vivodim;
-	cout << "Ââåäèòå ÷èñëî: ";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã·Ã¨Ã±Ã«Ã®: ";
 	vvodim = vvod();
 	vivodim = factorial(vvodim);
-	cout << "Ôàêòîðèàë äàííîãî ÷èñëà: " << vivodim;
-
-
+	cout << "Ã”Ã ÃªÃ²Ã®Ã°Ã¨Ã Ã« Ã¤Ã Ã­Ã­Ã®Ã£Ã® Ã·Ã¨Ã±Ã«Ã : " << vivodim;
 }
