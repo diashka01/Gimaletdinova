@@ -15,12 +15,12 @@ int vvod()
 }
 long long int Fibonacci(int chislo)
 {
-	long int fib[100], i;
-	fib[0] = 1;
-	fib[1] = 1;
-	for (i = 2; i < 100; i++)
-		fib[i] = fib[i - 1] + fib[i - 2];
-	return fib[chislo];
+	if (chislo == 0)
+		return 0;
+	if (chislo == 1)
+		return 1;
+	else
+		return Fibonacci(chislo - 1) + Fibonacci(chislo - 2);
 }
 int main()
 {
@@ -37,6 +37,6 @@ int main()
 			fibon = Fibonacci(i);
 			cout << fibon << " ";
 		}
-		fibon = Fibonacci(vvodim);
 	}
 }
+
