@@ -1,0 +1,107 @@
+#include <iostream>;
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	float fzero, finfp, finfo, feps, Nf, Mf, Maxf, Minf, ffinfp, ffinfo;
+	double dzero, dinfp, dinfo, deps, Nd, Md, Maxd, Mind, ddinfp, ddinfo;
+	int chh, i;
+
+	fzero = 0.9;
+	Mf = 1.0;
+	while (Mf > fzero)
+	{
+		Mf = fzero;
+		if (fzero / 2.0f != 0)
+			fzero /= 2.0f;
+		else
+			break;
+	}
+	cout << "Машинный ноль для типа float:" << fzero << endl;
+	dzero = 0.9;
+	Md = 1.0;
+	while (Md > dzero)
+	{
+		Md = dzero;
+		if (dzero / 2.0 != 0)
+			dzero /= 2.0;
+		else
+			break;
+	}
+	cout << "Машинный ноль для типа double:" << dzero << endl;
+  
+	feps = 1.0;
+	Nf = 2.0;
+	while (Nf > 1.0)
+	{
+		feps /= 2.0;
+		Nf = 1.0 + feps;
+	}
+	cout << "Машинный эпсилон для типа float:" << feps * 2.0 << endl;
+
+	deps = 1.0;
+	Nd = 2.0;
+	while (Nd > 1.0)
+	{
+		deps /= 2.0;
+		Nd = 1.0 + deps;
+	}
+	cout << "Машинный эпсилон для типа double:" << deps * 2.0 << endl;
+
+	cout << "Сумма машинного нуля и машинного эпсилон для типа float: " << fzero * 2.0 + feps * 2.0 << ". Разность машинного нуля и машинного эпсилон для типа float: " << feps * 2.0 - fzero * 2.0 << endl;
+	cout << "Сумма машинного нуля и машинного эпсилон для типа double: " << dzero * 2.0 + deps * 2.0 << ". Разность машинного нуля и машинного эпсилон для типа double: " << deps * 2.0 - dzero * 2.0 << endl;
+
+	Maxf = 2.1;
+	finfp = 1.0;
+	ffinfp = 1.0;
+	chh = -1;
+	while (Maxf > ffinfp)
+	{
+		ffinfp = Maxf;
+		Maxf *= 2.0;
+		chh++;
+	}
+	for (i = 0; i < chh; i++)
+		finfp *= 2.0;
+	cout << "Машинная бесконечность для типа float:" << (finfp - 0.5) * 2.0 << endl;
+	Maxd = 2.1;
+	dinfp = 1.0;
+	ddinfp = 1.0;
+	chh = -1;
+	while (Maxd > ddinfp)
+	{
+		ddinfp = Maxd;
+		Maxd *= 2.0;
+		chh++;
+	}
+	for (i = 0; i < chh; i++)
+		dinfp *= 2.0;
+	cout << "Машинная бесконечность для типа double:" << (dinfp - 5e+300) * 2.0 << endl;
+
+	Minf = -2.1;
+	finfo = -1.0;
+	ffinfo = -1.0;
+	chh = -1;
+	while (Minf < ffinfo)
+	{
+		ffinfo = Minf;
+		Minf *= 2.0;
+		chh++;
+	}
+	for (i = 0; i < chh; i++)
+		finfo *= 2.0;
+	cout << "Машинная минус бесконечность для типа float:" << (finfo - 0.5) * 2.0 << endl;
+	Mind = -2.1;
+	dinfo = -1.0;
+	ddinfo = -1.0;
+	chh = -1;
+	while (Mind < ddinfo)
+	{
+		ddinfo = Mind;
+		Mind *= 2.0;
+		chh++;
+	}
+	for (i = 0; i < chh; i++)
+		dinfo *= 2.0;
+	cout << "Машинная минус бесконечность для типа double:" << (dinfo + 5e+300) * 2.0 << endl;
+}
