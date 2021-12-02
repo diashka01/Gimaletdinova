@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+int obmen1(int *i1, int *i2)
+{
+    int p;
+    p = *i1;
+    *i1 = *i2;
+    *i2 = p;
+    return 0;
+}
+
+int obmen2(int *i1, int *i2)
+{
+    *i1 = *i1 + *i2;
+    *i2 = *i1 - *i2;
+    *i1 = *i1 - *i2;
+    return 0;
+}
+
+int obmen3(int *i1, int *i2)
+{
+    *i1 = *i1 * *i2;
+    *i2 = *i1 / *i2;
+    *i1 = *i1 / *i2;
+    return 0;
+}
+int puzyryok(int mas[], int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i ++)
+    {
+        for (j = n - 1; j > i; j --)
+        {
+            if (mas[j - 1] > mas[j])
+                obmen2(&mas[j], &mas[j-1]);
+        }
+    }
+}
+int main()
+{
+    int i1, i2;
+    i1 = 1;
+    i2 = 2;
+    cout << i1 << " " << i2 << endl;
+    obmen1(&i1, &i2);
+    cout << i1 << " " << i2 << endl;
+    obmen2(&i1, &i2);
+    cout << i1 << " " << i2 << endl;
+    obmen3(&i1, &i2);
+    cout << i1 << " " << i2 << endl;
+    
+    setlocale(LC_ALL, "Russian");
+    int i, n;
+    cout << "Введите число элементов в массиве: ";
+    cin >> n;
+    cout << endl;
+    int mas[n];
+    for (i = 0; i < n; i ++)
+    {
+        mas[i] = 1 + rand() % 100;
+    }
+    for (i = 0; i < n; i ++)
+        cout << mas[i] << " ";
+    cout << endl;
+    puzyryok(mas, n);
+    for (i = 0; i < n; i ++)
+        cout << mas[i] << " ";
+    cout << endl;
+}
