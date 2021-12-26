@@ -26,7 +26,7 @@ public:
 	}
 	void pop() {
 		int	i = 0;
-		cout << "èçûëå÷åí ýëåìåíò " << p[0] << "\n";
+		cout << "ÄÃ§Å±Ã«ÄºÃ·ÄºÃ­ Ã½Ã«ÄºÄ›ÄºÃ­Åˆ " << p[0] << "\n";
 		while (i < len - 1)
 		{
 			p[i] = p[i + 1];
@@ -50,18 +50,17 @@ int main()
 {
 	int n, i, elem;
 	setlocale(LC_ALL, "Russian");
-	cout << "Ââåäèòå êîëè÷åñòâî ýëåìåíòîâ ";
+	cout << "Ã‚Ã¢ÄºÃ¤ÄÅˆÄº Ä™Ã®Ã«ÄÃ·ÄºÅ„ÅˆÃ¢Ã® Ã½Ã«ÄºÄ›ÄºÃ­ÅˆÃ®Ã¢ ";
 	cin >> n;
 	LIFO massiv(n);
 	i = 0;
-	cout << "Ââåäèòå ýëåìåíòû ";
+	cout << "Ã‚Ã¢ÄºÃ¤ÄÅˆÄº Ã½Ã«ÄºÄ›ÄºÃ­ÅˆÅ± ";
 	while (i < n) 
 	{
 		cin >> elem;
 		massiv.push(elem);
 		i++;
 	}
-		massiv.pop();
 		massiv.pop();
 		massiv.print();
 }
