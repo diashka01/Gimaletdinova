@@ -1,0 +1,36 @@
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+class Rectangle {
+private:
+    double xl, xr, yd, yu, ff;
+
+public:
+    Rectangle(double a, double b, double c, double d) : xl(a), xr(b), yd(c), yu(d) {	}
+    void Crossing(Rectangle rec2) {
+        ff = 0;;
+        if ((xr >= rec2.xl) && (xr <= rec2.xr) && (((yd >= rec2.yd) && (yd <= rec2.yu)) || ((yu >= rec2.yd) && (yu <= rec2.yu))))
+            ff ++;
+        if ((xl >= rec2.xl) && (xl <= rec2.xr) && (((yd >= rec2.yd) && (yd <= rec2.yu)) || ((yu >= rec2.yd) && (yu <= rec2.yu))))
+            ff ++;
+        if (((yd >= rec2.yd) && (yd <= rec2.yu)) && (((xr >= rec2.xl) && (xr <= rec2.xr)) || ((xl >= rec2.xl) && (xl <= rec2.xr))))
+            ff ++;
+        if (((yu >= rec2.yd) && (yu <= rec2.yd)) && (((xr >= rec2.xl) && (xr <= rec2.xr)) || ((xl >= rec2.xl) && (xl <= rec2.xr))))
+            ff ++;
+        if (ff == 0)
+            cout << "Данные прямоугольники не пересекаются";
+        else cout << "Данные прямоугольники пересекаются";
+    }
+};
+int main(void)
+{
+    setlocale(LC_ALL, "Russian");
+    double r11, r12, r13, r14, r21, r22, r23, r24;
+    ifstream file("date.txt");
+    file >> r11 >> r12 >> r13 >> r14 >> r21 >> r22 >> r23 >> r24;
+    Rectangle r1(r11, r12, r13, r14), r2(r21, r22, r23, r24);
+    r1.Crossing(r2);
+}
