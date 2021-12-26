@@ -2,18 +2,18 @@
 #include <stdio.h>
 using namespace std;
 
-class LIFO 
+class FIFO 
 {
 private:
 	int *p, len, elem;
 public:
-	LIFO(int n) 
+	FIFO(int n) 
 	{
 		len = n;
 		p = new int[len];
 		elem = 0;
 	}
-	~LIFO() 
+	~FIFO() 
 	{
 		delete[] p;
 	}
@@ -50,7 +50,7 @@ int main()
 	setlocale(LC_ALL, "Russian");
 	cout << "Ââĺäčňĺ ęîëč÷ĺńňâî ýëĺěĺíňîâ ";
 	cin >> n;
-	LIFO massiv(n);
+	FIFO massiv(n);
 	i = 0;
 	cout << "Ââĺäčňĺ ýëĺěĺíňű ";
 	while (i < n) 
