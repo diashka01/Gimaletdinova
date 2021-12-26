@@ -22,7 +22,6 @@ public:
 	{
 		p[elem] = pl;
 		elem++;
-		
 	}
 	void pop() {
 		int	i = 0;
@@ -44,7 +43,6 @@ public:
 		cout << endl;
 	}
 };
-
 
 int main() 
 {
