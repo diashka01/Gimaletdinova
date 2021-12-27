@@ -1,0 +1,123 @@
+#include<iostream>
+#include <vector>
+
+using namespace std;
+
+int NOD(int x, int y) 
+{
+    if (x % y == 0)
+        return y;
+    if (y % x == 0)
+        return x;
+    if (x > y)
+        return NOD(x % y, y);
+    return NOD(x, y % x);
+}
+int NOCK(int x, int y)
+{
+    return x * y / NOD(x, y);
+}
+class CRational
+{
+public:
+    int cel, chisl, znam;
+    CRational(int u, int n, int d)
+    {
+        cel = u;
+        chisl = n;
+        if (d == 0)
+        {
+            cout << "Деление на ноль" << endl;
+            exit(0);
+        }
+        else
+            znam = d;
+    }
+    CRational Cheak()
+    {
+        if (chisl != 0) {
+            if (chisl % znam == 0) {
+                cel += chisl / znam;
+                znam = 1;
+                chisl = 0;
+            }
+            else {
+                if (chisl / znam != 0) {
+                    cel += (chisl / znam);
+                    chisl %= znam;
+                }
+                if (NOD(chisl, znam) != 1) {
+                    int nod = NOD(chisl, znam);
+                    chisl /= nod;
+                    znam /= nod;
+                }
+            }
+        }
+        else znam = 1;
+        return { cel, chisl, znam };
+    }
+    void input()
+    {
+        cin >> cel;
+        cin >> chisl;
+        cin >> znam;
+        if (znam == 0)
+        {
+            cout << "Деление на ноль" << endl;
+            exit(0);
+        }
+        Cheak();
+    }
+    CRational add(CRational number2)
+    {
+        CRational num(0, 0, 1);
+        num.znam = NOCK(znam, number2.znam);
+        chisl *= (num.znam / znam);
+        number2.chisl *= (num.znam / number2.znam);
+        num.chisl = chisl + number2.chisl;
+        num.cel = cel + number2.cel;
+        num.Cheak();
+        chisl /= (num.znam / znam);
+        return num;
+    }
+    CRational multiplication(CRational number2)
+    {
+        CRational num(0, 0, 1);
+        if (number2.cel) {
+            number2.chisl += (number2.znam * number2.cel);
+            number2.cel = 0;
+        }
+        if (cel) {
+            chisl += (znam * cel);
+            cel = 0;
+        }
+        num.chisl = chisl * number2.chisl;
+        num.znam = znam * number2.znam;
+        num.Cheak();
+        return num;
+    }
+    
+    void pr() const
+    {
+        if (cel == 0)
+            cout << chisl << "/" << znam << "\n";
+        else
+            if (chisl == 0)
+                cout << cel << "\n";
+            else
+                cout << cel << " " << chisl << "/" << znam << "\n";
+    }
+    
+};
+int main() {
+    CRational frac1 = { 0,0,1 }, frac2 = { 0,0,1 };
+    setlocale(LC_ALL, "Russian");
+    cout << "Введите дроби в следующем виде: ЦелаяЧасть Числитель Знаменатель\nДробь 1:";
+    frac1.input();
+    cout << "Дробь 2:";
+    frac2.input();
+    cout << "Сумма двух дробей:\n";
+    (frac1.add(frac2)).pr();
+    cout << "Произведение двух дробей:\n";
+    (frac1.multiplication(frac2)).pr();
+}
