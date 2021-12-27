@@ -1,0 +1,96 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+class BASE
+{
+public:
+	int* p, len, elem;
+	BASE(int n)
+	{
+		len = n;
+		p = new int[len];
+		elem = 0;
+	}
+	~BASE()
+	{
+		delete[] p;
+	}
+
+	void push(int pl)
+	{
+		p[elem] = pl;
+		elem++;
+	}
+	void print()
+	{
+		for (int i = 0; i < len; i++) {
+			cout << p[i];
+			if (i < len - 1)
+				cout << " ";
+		}
+		cout << endl;
+	}
+};
+
+class LIFO : public BASE
+{
+public:
+	LIFO(int len) : BASE(len) {}
+	int pop() 
+	{
+		int	i = 0;
+		cout << "извлечен элемент " << p[len - 1] << "\n";
+		if (len == 0)
+			return 0;
+		len--;
+		return p[len];
+	}
+};
+class FIFO: public BASE
+{
+public:
+	FIFO(int len) : BASE(len) {}
+	void pop() {
+		int	i = 0;
+		cout << "извлечен элемент " << p[0] << "\n";
+		while (i < len - 1)
+		{
+			p[i] = p[i + 1];
+			i++;
+		}
+		len--;
+	}
+};
+
+int main()
+{
+	int n, i, elem;
+	setlocale(LC_ALL, "Russian");
+	cout << "Введите количество элементов ";
+	cin >> n;
+	LIFO mas(n);
+	i = 0;
+	cout << "Введите элементы ";
+	while (i < n)
+	{
+		cin >> elem;
+		mas.push(elem);
+		i++;
+	}
+	mas.pop();
+	mas.print();
+	cout << "Введите количество элементов ";
+	cin >> n;
+	FIFO massiv(n);
+	i = 0;
+	cout << "Введите элементы ";
+	while (i < n)
+	{
+		cin >> elem;
+		massiv.push(elem);
+		i++;
+	}
+	massiv.pop();
+	massiv.print();
+}
